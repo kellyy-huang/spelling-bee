@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import LettersInputForm from "./LettersInputForm";
+import Game from "./Game";
 
 function App() {
+  const [targetLetter, setTargetLetter] = useState("");
+  const [letters, setLetters] = useState("");
+  const [showForm, setShowForm] = useState(true);
+  const [rankings, setRankings] = useState();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <h1>Spelling Bee for Free!</h1>
+      {showForm ? (
+        <LettersInputForm
+          setShowForm={setShowForm}
+          setLetters={setLetters}
+          setTargetLetter={setTargetLetter}
+          setRankings={setRankings}
+        ></LettersInputForm>
+      ) : (
+        <Game
+          letters={letters}
+          targetLetter={targetLetter}
+          rankings={rankings}
+        ></Game>
+      )}
     </div>
   );
 }
